@@ -20,6 +20,10 @@
         self.locationManager.distanceFilter = kCLDistanceFilterNone;
         self.locationManager.delegate = self;
         self.locationType = LocationManagerTypeNone;
+        // Set for iOS 9 to work in the background
+        if ([self.locationManager respondsToSelector:NSSelectorFromString(@"allowsBackgroundLocationUpdates")]) {
+            [self.locationManager setValue:@YES forKey:@"allowsBackgroundLocationUpdates"];
+        }
     }
     
     return self;
